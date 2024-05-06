@@ -1,12 +1,10 @@
-import express, { Request, Response, json } from "express";
+import express, { json } from "express";
+import router from "./routes";
 
 function createApp() {
   const app = express();
   app.use(json());
-
-  app.get("/", (req: Request, res: Response) => {
-    res.json({ player: "Hello World" });
-  });
+  app.use("/api", router);
 
   return app;
 }
