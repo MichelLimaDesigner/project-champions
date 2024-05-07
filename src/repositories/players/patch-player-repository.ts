@@ -1,13 +1,15 @@
 import { PlayerModel, PlayerStatisticsModel } from "../../models/player-model";
-import { database } from "./players-database";
+import fs from "fs/promises";
 
 export const findAndModifyPlayer = async (
   id: number,
   statistics: PlayerStatisticsModel
 ): Promise<PlayerModel> => {
-  const playerIndex = database.findIndex((player) => player.id === id);
+  const database = await fs.readFile("./src/data/players-data.json", "utf-8");
+  const players: PlayerModel[] = JSON.parse(database);
+  const playerIndex = players.findIndex((player) => player.id === id);
 
-  if (playerIndex !== -1) database[playerIndex].statistics = statistics;
+  if (playerIndex !== -1) players[playerIndex].statistics = statistics;
 
-  return database[playerIndex];
+  return players[playerIndex];
 };
