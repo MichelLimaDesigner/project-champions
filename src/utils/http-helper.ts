@@ -28,4 +28,11 @@ const badRequest = async (): Promise<HttpResponse> => {
   };
 };
 
-export { ok, created, noContent, badRequest };
+const notModified = async (): Promise<HttpResponse> => {
+  return {
+    statusCode: 304,
+    body: null,
+  };
+};
+
+export { ok, created, noContent, badRequest, notModified };

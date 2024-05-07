@@ -1,5 +1,5 @@
 import { HttpResponse } from "../../models/http-response-model";
-import { deleteOnePlayer } from "../../repositories/players/delete-player-respository";
+import { deleteOnePlayer } from "../../repositories/players/delete-player-repository";
 import { ok } from "../../utils/http-helper";
 
 export const deletePlayerService = async (
